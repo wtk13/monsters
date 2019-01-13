@@ -1,44 +1,19 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import MonstersList from './view/MonstersList';
+import MonsterDetails from './view/MonsterDetails';
 import './styles/main.scss';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      monsters: [],
-    }
-  }
-
-  componentDidMount() {
-    this.getAllMonsters();
-  }
-
-  getAllMonsters() {
-    fetch('http://localhost:8080/api/v1/monsters')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Can not connect to the API');
-      })
-      .then(response => {
-        this.setState({monsters: response.data});
-      }).catch(err => Promise.reject(err.message));
-  }
 
   render() {
-    const { monsters } = this.state;
-
     return (
-      <div className='appWrapper'>
-        <h1>Monsters list</h1>
-        <ul>
-          { monsters.map((monster, index) => (
-            <li key={index}>{monster.name}</li>
-          )) }
-        </ul>
-      </div>
+      <Router>
+        <div>
+          <Route path="/" exact={true} render={ () => <MonstersList /> } />
+          <Route path='/:slug' component={ MonsterDetails } />
+        </div>
+      </Router>
     );
   }
 }
