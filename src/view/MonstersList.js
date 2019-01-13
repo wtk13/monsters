@@ -30,12 +30,12 @@ class MonstersList extends Component {
   render() {
     const { monsters } = this.state;
     return (
-        <div className='appWrapper'>
+        <div className='monsterList'>
           <h1>Monsters list</h1>
           { monsters ? (
             <ul>
               { monsters.map((monster, index) => (
-                <li key={index}><Link to={`/${monster.slug}`}>{ monster.name }</Link></li>
+                <li key={index}><Link to={`/monster/${monster.slug}`}>{ monster.name }</Link></li>
               )) }
             </ul>
           ) : (

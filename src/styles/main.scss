@@ -1,7 +1,33 @@
+@import '../components/Header';
+@import '../components/Footer';
+@import '../view/MonsterList';
+
+* {
+  box-sizing: border-box;
+}
+
 .appWrapper {
-  padding: 2rem;
+  padding: 10px 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  max-width: 450px;
+  margin: 0 auto;
+  height: 100vh;
+  min-height: 500px;
+
+  &__view {
+    height: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.mainContent {
+  height: calc(100% - 100px);
+  width: 100%;
+  background-color: lavender;
+  padding: 0 10px;
 }

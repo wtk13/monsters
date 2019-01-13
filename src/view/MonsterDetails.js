@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Monster from '../components/Monster';
 
 class MonsterDetails extends Component {
   constructor(props) {
@@ -31,12 +31,8 @@ class MonsterDetails extends Component {
     const { details } = this.state;
     return (
         <div>
-          <Link to='/'>
-            <h6>Back to home</h6>
-          </Link>
-          <br/>
-          <br/>
-          { details.name }
+          <h1>Monster details</h1>
+          <Monster details={ details }/>
         </div>
     );
   }
