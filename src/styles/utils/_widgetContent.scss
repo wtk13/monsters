@@ -1,0 +1,9 @@
+.widgetContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    text-align: center;
+  }
+}
