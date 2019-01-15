@@ -30,10 +30,10 @@ class MonsterDetails extends Component {
   render() {
     const { details } = this.state;
     return (
-        <div>
-          <h1>Monster details</h1>
+        <article className='widgetContent'>
+          <h1 className='widgetContent__header'>Monster details</h1>
           <Monster details={ details }/>
-        </div>
+        </article>
     );
   }
 }
