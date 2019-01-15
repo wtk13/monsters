@@ -5,7 +5,7 @@ class Monster extends Component {
     const { details } = this.props;
     return (
       <article className="monster">
-        <header className="monster__name"><h2>{ details.name }</h2></header>
+        <h2 className="monster__name">{ details.name }</h2>
       </article>
     );
   }

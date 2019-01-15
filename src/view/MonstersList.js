@@ -29,9 +29,10 @@ class MonstersList extends Component {
 
   render() {
     const { monsters } = this.state;
+    console.log({monsters});
     return (
-        <div className='monsterList'>
-          <h1>Monsters list</h1>
+        <article className='widgetContent'>
+          <h1 className='widgetContent__header'>Choose your monster</h1>
           { monsters ? (
             <ul>
               { monsters.map((monster, index) => (
@@ -41,7 +42,7 @@ class MonstersList extends Component {
           ) : (
             <p>Loading...</p>
           )}
-        </div>
+        </article>
     );
   }
 }
