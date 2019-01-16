@@ -12,6 +12,7 @@ class MonstersList extends Component {
 
     this.prevSlide = this.prevSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
+    this.setSlide = this.setSlide.bind(this);
   }
 
   componentDidMount() {
@@ -27,18 +28,22 @@ class MonstersList extends Component {
         throw new Error('Can not connect to the API');
       })
       .then(response => {
-        this.setState({monsters: response.data});
+        this.setState({ monsters: response.data });
       }).catch(err => Promise.reject(err.message));
   }
 
   prevSlide(e) {
     e.preventDefault();
-    this.setState({activeSlide: this.state.activeSlide - 1 >= 0 ? this.state.activeSlide - 1 : this.state.monsters.length - 1});
+    this.setState({ activeSlide: this.state.activeSlide - 1 >= 0 ? this.state.activeSlide - 1 : this.state.monsters.length - 1 });
   }
 
   nextSlide(e) {
     e.preventDefault();
-    this.setState({activeSlide: this.state.activeSlide + 1 < this.state.monsters.length ? this.state.activeSlide + 1 : 0});
+    this.setState({ activeSlide: this.state.activeSlide + 1 < this.state.monsters.length ? this.state.activeSlide + 1 : 0 });
+  }
+
+  setSlide(e) {
+    this.setState({ activeSlide: Number(e.target.getAttribute('data-slide-to')) });
   }
 
   render() {
@@ -50,7 +55,11 @@ class MonstersList extends Component {
             <div id='carouselExampleIndicators' className='carousel slide' data-ride='carousel'>
             <ol className='carousel-indicators'>
               { monsters.map((monster, index) => (
-                <li key={index} data-target='#carouselExampleIndicators' data-slide-to={index} className={`${index === activeSlide ? 'active' : ''}`}></li>
+                <li key={index}
+                    data-target='#carouselExampleIndicators'
+                    data-slide-to={index}
+                    className={`${index === activeSlide ? 'active' : ''}`}
+                    onClick={this.setSlide}></li>
               )) }
             </ol>
               <div className='carousel-inner'>
