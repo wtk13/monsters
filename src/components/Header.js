@@ -6,8 +6,8 @@ class Header extends Component {
     return (
       <header className="mainHeader">
         <nav className="mainHeader__navigation">
-          <Link to='/'>Home</Link>
-          <Link to='/about'>About</Link>
+          <Link to='/' className='navButton'>Home</Link>
+          <Link to='/about' className='navButton'>About</Link>
         </nav>
       </header>
     );

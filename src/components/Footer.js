@@ -4,7 +4,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className='mainFooter'>
-        <p className='mainFooter__text'>Author: Remigiusz Wasiak</p>
+        <p className='mainFooter__text'>&copy; Remigiusz Wasiak</p>
       </footer>
     );
   }
