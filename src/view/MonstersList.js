@@ -38,7 +38,6 @@ class MonstersList extends Component {
 
   render() {
     const { monsters, activeSlide, direction } = this.state;
-    console.log('render');
     return (
         <article className='widgetContent'>
           <h1 className='widgetContent__header'>Choose your monster</h1>
@@ -48,11 +47,11 @@ class MonstersList extends Component {
               direction={ direction }
               onSelect={ this.handleSelect }>
                 { monsters.map((monster, index) => (
-                  <Carousel.Item key={ index }>
-                    <div style={{ height: 340, display: 'flex', justifyContent: 'center', padding: '0px 50px 50px', flexDirection: 'column' }}>
-                      <img style={{ maxWidth: '100%', maxHeight: '100%'}}src={ monster.images.big } alt={ monster.name }/>
-                      <Carousel.Caption className='text' style={{ textAlign: 'center', marginBottom: 0 }}>{ monster.name }</Carousel.Caption>
+                  <Carousel.Item className='monsterItem' key={ index }>
+                    <div className='monsterItem__imgContainer'>
+                      <Link key={index} to={monster.slug} ><img className='monsterItem__img' src={ monster.images.big } alt={ monster.name }/></Link>
                     </div>
+                    <Carousel.Caption className='monsterItem__name'>{ monster.name }</Carousel.Caption>
                   </Carousel.Item>
                 ))}
             </Carousel>
