@@ -1,0 +1,29 @@
+.carousel {
+  height: 100%;
+}
+
+.carousel-control {
+  &.left, &.right {
+    background-image: none;
+  }
+
+  &.left .glyphicon-chevron-left {
+    left: 20%;
+    top: 43%;
+  }
+
+  &.right .glyphicon-chevron-right {
+    right: 20%;
+    top: 43%;
+  }
+}
+
+.carousel-indicators {
+    bottom: 0px;
+}
+
+.carousel-caption {
+  bottom: 5px;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.6);
+}
+
