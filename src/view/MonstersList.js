@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
 
 class MonstersList extends Component {
   constructor(props) {
@@ -8,11 +9,10 @@ class MonstersList extends Component {
     this.state = {
       monsters: [],
       activeSlide: 0,
+      direction: null
     }
 
-    this.prevSlide = this.prevSlide.bind(this);
-    this.nextSlide = this.nextSlide.bind(this);
-    this.setSlide = this.setSlide.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
@@ -32,54 +32,30 @@ class MonstersList extends Component {
       }).catch(err => Promise.reject(err.message));
   }
 
-  prevSlide(e) {
-    e.preventDefault();
-    this.setState({ activeSlide: this.state.activeSlide - 1 >= 0 ? this.state.activeSlide - 1 : this.state.monsters.length - 1 });
-  }
-
-  nextSlide(e) {
-    e.preventDefault();
-    this.setState({ activeSlide: this.state.activeSlide + 1 < this.state.monsters.length ? this.state.activeSlide + 1 : 0 });
-  }
-
-  setSlide(e) {
-    this.setState({ activeSlide: Number(e.target.getAttribute('data-slide-to')) });
+  handleSelect(selectedIndex, e) {
+    this.setState({ activeSlide: selectedIndex, direction: e.direction });
   }
 
   render() {
-    const { monsters, activeSlide } = this.state;
+    const { monsters, activeSlide, direction } = this.state;
+    console.log('render');
     return (
         <article className='widgetContent'>
           <h1 className='widgetContent__header'>Choose your monster</h1>
           { monsters ? (
-            <div className='carousel slide' data-ride='carousel'>
-            <ol className='carousel-indicators'>
-              { monsters.map((monster, index) => (
-                <li key={ index }
-                    data-slide-to={ index }
-                    className={ `${index === activeSlide ? 'active' : ''}` }
-                    onClick={ this.setSlide }></li>
-              )) }
-            </ol>
-              <div className='carousel-inner'>
+            <Carousel
+              activeIndex={ activeSlide }
+              direction={ direction }
+              onSelect={ this.handleSelect }>
                 { monsters.map((monster, index) => (
-                  <div key={ index } className={ `carousel-item ${index === activeSlide ? 'active' : ''} slideWrapper` }>
+                  <Carousel.Item key={ index }>
                     <div style={{ height: 340, display: 'flex', justifyContent: 'center', padding: '0px 50px 50px', flexDirection: 'column' }}>
                       <img style={{ maxWidth: '100%', maxHeight: '100%'}}src={ monster.images.big } alt={ monster.name }/>
-                      <p style={{ textAlign: 'center', marginBottom: 0 }}>{ monster.name }</p>
+                      <Carousel.Caption className='text' style={{ textAlign: 'center', marginBottom: 0 }}>{ monster.name }</Carousel.Caption>
                     </div>
-                  </div>
+                  </Carousel.Item>
                 ))}
-              </div>
-              <a className='carousel-control-prev' href='' role='button' data-slide='prev' onClick={ this.prevSlide }>
-                <span className='carousel-control-prev-icon' aria-hidden='true'></span>
-                <span className='sr-only'>Previous</span>
-              </a>
-              <a className='carousel-control-next' href='' role='button' data-slide='next' onClick={ this.nextSlide }>
-                <span className='carousel-control-next-icon' aria-hidden='true'></span>
-                <span className='sr-only'>Next</span>
-              </a>
-            </div>
+            </Carousel>
           ) : (
             <p>Loading...</p>
           )}
