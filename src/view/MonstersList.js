@@ -47,7 +47,13 @@ class MonstersList extends Component {
                 ))}
             </Carousel>
           ) : (
-            <p>Loading...</p>
+            <div className='widgetContent__loader'>
+              <BarLoader
+                width={150}
+                height={5}
+                color={'#3A435E'}
+              />
+            </div>
           )}
         </article>
     );
