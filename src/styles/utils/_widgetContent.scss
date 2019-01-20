@@ -10,4 +10,11 @@
     color: #fff;
     text-shadow: 0 2px 1px rgba(0, 0, 0, 0.6);
   }
+
+  &__loader {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
