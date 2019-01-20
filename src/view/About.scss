@@ -1,0 +1,11 @@
+.aboutPageContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+
+  &__list {
+    //list-style: none;
+    padding-left: 20px;
+  }
+}
