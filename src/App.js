@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import MonstersList from './view/MonstersList';
 import MonsterDetails from './view/MonsterDetails';
 import About from './view/About';
@@ -52,9 +52,12 @@ class App extends Component {
           <div className='appWrapper__view'>
             <Header />
             <main className='mainContent'>
-              <Route path="/" exact={true} render={ () => <MonstersList getActiveSlide={ this.getActiveSlide } activeSlide={ this.state.activeSlide } monsters={ monsters }/> } />
-              <Route path='/monster/:slug' component={ MonsterDetails } />
-              <Route path='/about' component={ About }/>
+              <Switch>
+                <Route path='/' exact={ true } render={ () => <MonstersList getActiveSlide={ this.getActiveSlide } activeSlide={ this.state.activeSlide } monsters={ monsters }/> } />
+                <Route path='/monster/:slug' exact={ true } component={ MonsterDetails } />
+                <Route path='/about' exact={ true } component={ About }/>
+                <Redirect from='*' to='/'/>
+              </Switch>
             </main>
             <Footer />
           </div>
