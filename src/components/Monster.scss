@@ -1,0 +1,60 @@
+.monsterWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.monsterMainInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 15px;
+
+  &__imgContainer {
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 120px;
+  }
+
+  &__avatar {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.monsterAdditionalInfo {
+
+  &__statistics {
+    font-weight: bold;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__description {
+    padding: 3px 10px;
+    background-color: rgba(100%, 100%, 100%, 0.3);
+    border-radius: 5px;
+    margin-bottom: 0;
+  }
+}
+
+
+.progressBar {
+  display: flex;
+
+  &__property {
+    flex: 2;
+  }
+
+  &__bar {
+    flex: 4;
+  }
+
+  &__value {
+    flex: 1;
+    text-align: end;
+  }
+}
+
