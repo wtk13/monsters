@@ -14,24 +14,45 @@ class App extends Component {
     super(props);
 
     this.state = {
+      monsters: null,
       activeSlide: 0,
     }
 
     this.getActiveSlide = this.getActiveSlide.bind(this);
   }
 
+  componentDidMount() {
+    this.getAllMonsters();
+  }
+
+  getAllMonsters() {
+    fetch('http://localhost:8080/api/v1/monsters')
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Can not connect to the API');
+      })
+      .then(response => {
+        setTimeout(() => {
+          this.setState({ monsters: response.data, loading: false });
+        }, 1000);
+      }).catch(err => Promise.reject(err.message));
+  }
+
   getActiveSlide = activeSlide => {
-    this.setState({activeSlide: activeSlide});
+    this.setState({ activeSlide: activeSlide });
   }
 
   render() {
+    const { monsters } = this.state;
     return (
       <Router>
         <div className='appWrapper'>
           <div className='appWrapper__view'>
             <Header />
             <main className='mainContent'>
-              <Route path="/" exact={true} render={ () => <MonstersList getActiveSlide={this.getActiveSlide} activeSlide={this.state.activeSlide} /> } />
+              <Route path="/" exact={true} render={ () => <MonstersList getActiveSlide={ this.getActiveSlide } activeSlide={ this.state.activeSlide } monsters={ monsters }/> } />
               <Route path='/monster/:slug' component={ MonsterDetails } />
               <Route path='/about' component={ About }/>
             </main>

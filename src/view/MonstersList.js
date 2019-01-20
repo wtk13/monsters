@@ -1,36 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
+import { BarLoader } from 'react-spinners';
 
 class MonstersList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      monsters: [],
+      monsters: null,
       activeSlide: this.props.activeSlide,
-      direction: null
+      direction: null,
     }
 
     this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
-    this.getAllMonsters();
     this.setState({ activeSlide: this.props.activeSlide });
-  }
-
-  getAllMonsters() {
-    fetch('http://localhost:8080/api/v1/monsters')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Can not connect to the API');
-      })
-      .then(response => {
-        this.setState({ monsters: response.data });
-      }).catch(err => Promise.reject(err.message));
   }
 
   handleSelect(selectedIndex, e) {
@@ -39,7 +26,8 @@ class MonstersList extends Component {
   }
 
   render() {
-    const { monsters, activeSlide, direction } = this.state;
+    const { activeSlide, direction } = this.state;
+    const { monsters } = this.props;
 
     return (
         <article className='widgetContent'>
