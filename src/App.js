@@ -10,6 +10,19 @@ import './styles/main.scss';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeSlide: 0,
+    }
+
+    this.getActiveSlide = this.getActiveSlide.bind(this);
+  }
+
+  getActiveSlide = activeSlide => {
+    this.setState({activeSlide: activeSlide});
+  }
 
   render() {
     return (
@@ -18,7 +31,7 @@ class App extends Component {
           <div className='appWrapper__view'>
             <Header />
             <main className='mainContent'>
-              <Route path="/" exact={true} render={ () => <MonstersList /> } />
+              <Route path="/" exact={true} render={ () => <MonstersList getActiveSlide={this.getActiveSlide} activeSlide={this.state.activeSlide} /> } />
               <Route path='/monster/:slug' component={ MonsterDetails } />
               <Route path='/about' component={ About }/>
             </main>

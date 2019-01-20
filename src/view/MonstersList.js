@@ -8,7 +8,7 @@ class MonstersList extends Component {
 
     this.state = {
       monsters: [],
-      activeSlide: 0,
+      activeSlide: this.props.activeSlide,
       direction: null
     }
 
@@ -17,6 +17,7 @@ class MonstersList extends Component {
 
   componentDidMount() {
     this.getAllMonsters();
+    this.setState({ activeSlide: this.props.activeSlide });
   }
 
   getAllMonsters() {
@@ -33,11 +34,13 @@ class MonstersList extends Component {
   }
 
   handleSelect(selectedIndex, e) {
+    this.props.getActiveSlide(selectedIndex);
     this.setState({ activeSlide: selectedIndex, direction: e.direction });
   }
 
   render() {
     const { monsters, activeSlide, direction } = this.state;
+
     return (
         <article className='widgetContent'>
           <h1 className='widgetContent__header'>Choose your monster</h1>
@@ -49,7 +52,7 @@ class MonstersList extends Component {
                 { monsters.map((monster, index) => (
                   <Carousel.Item className='monsterItem' key={ index }>
                     <div className='monsterItem__imgContainer'>
-                      <Link key={index} to={monster.slug} ><img className='monsterItem__img' src={ monster.images.big } alt={ monster.name }/></Link>
+                      <Link key={index} to={`/monster/${monster.slug}`} ><img className='monsterItem__img' src={ monster.images.big } alt={ monster.name }/></Link>
                     </div>
                     <Carousel.Caption className='monsterItem__name'>{ monster.name }</Carousel.Caption>
                   </Carousel.Item>
