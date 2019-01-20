@@ -6,7 +6,7 @@ class MonsterDetails extends Component {
     super(props);
 
     this.state = {
-      details: {},
+      details: null,
     }
   }
 
@@ -32,7 +32,11 @@ class MonsterDetails extends Component {
     return (
         <article className='widgetContent'>
           <h1 className='widgetContent__header'>Monster details</h1>
-          <Monster details={ details }/>
+          { details ? (
+            <Monster details={ details }/>
+          ) : (
+            <p>Loading...</p>
+          )}
         </article>
     );
   }
