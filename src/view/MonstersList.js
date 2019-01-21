@@ -34,6 +34,7 @@ class MonstersList extends Component {
           <h1 className='widgetContent__header'>Choose your monster</h1>
           { monsters ? (
             <Carousel
+              className='widgetContent__carousel'
               activeIndex={ activeSlide }
               direction={ direction }
               onSelect={ this.handleSelect }>
