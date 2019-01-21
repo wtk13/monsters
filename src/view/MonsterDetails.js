@@ -34,7 +34,7 @@ class MonsterDetails extends Component {
   render() {
     const { details } = this.state;
     return (
-        <article className='widgetContent'>
+        <section className='widgetContent'>
           <h1 className='widgetContent__header'>Monster details</h1>
           { details ? (
             <Monster details={ details }/>
@@ -47,7 +47,7 @@ class MonsterDetails extends Component {
               />
             </div>
           )}
-        </article>
+        </section>
     );
   }
 }
