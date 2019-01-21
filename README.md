@@ -11,7 +11,7 @@ This is react training app. Below there are listed libraries, technologies and t
 7. SASS
 8. BEM
 
-How to run:
+**How to run:**
 1. clone this repo
 2. inside a project folder go to a monsters-api/
 3. npm install 
@@ -19,3 +19,5 @@ How to run:
 5. back to the project folder using new terminal tab
 6. npm install 
 7. npm start (application should be started, http://localhost:3000/)
+
+**This project doesn't support IE 11**
