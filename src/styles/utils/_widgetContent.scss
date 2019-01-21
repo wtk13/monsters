@@ -18,3 +18,18 @@
     justify-content: center;
   }
 }
+
+@media (max-width: $max-mobile-width) {
+  .widgetContent {
+
+    &__header {
+      font-size: 28px;
+    }
+  }
+
+  .monsterAdditionalInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+}
