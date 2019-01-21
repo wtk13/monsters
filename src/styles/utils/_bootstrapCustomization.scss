@@ -1,10 +1,11 @@
 .carousel {
-  height: 100%;
+  display: flex;
 }
 
 .carousel-control {
   &.left, &.right {
     background-image: none;
+    font-size: 30px;
   }
 
   &.left .glyphicon-chevron-left {
@@ -25,5 +26,12 @@
 .carousel-caption {
   bottom: 5px;
   text-shadow: 0 2px 1px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: $max-mobile-width) {
+  .carousel {
+    flex: 1;
+    align-items: center;
+  }
 }
 
