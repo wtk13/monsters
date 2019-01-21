@@ -30,7 +30,7 @@ class MonstersList extends Component {
     const { monsters } = this.props;
 
     return (
-        <article className='widgetContent'>
+        <section className='widgetContent'>
           <h1 className='widgetContent__header'>Choose your monster</h1>
           { monsters ? (
             <Carousel
@@ -56,7 +56,7 @@ class MonstersList extends Component {
               />
             </div>
           )}
-        </article>
+        </section>
     );
   }
 }
