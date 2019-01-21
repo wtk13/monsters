@@ -1,8 +1,8 @@
 .mainHeader {
   width: 100%;
-  height: 45px;
-  background-color: #8D89A6;
-  border-bottom: solid 2px #3A435E;
+  height: $header-height;
+  background-color: $main-color;
+  border-bottom: solid 2px $secondary-color;
   padding: 0 10px;
 
   &__navigation {
